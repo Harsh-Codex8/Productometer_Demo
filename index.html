@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Productometer Portal - Features</title>
+    <!-- Google Fonts Framework Links -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons Framework Asset -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <link rel="stylesheet" href="../style.css">  <!-- Pulls your global root body canvas styles -->
+    <link rel="stylesheet" href="./style.css">   <!-- Pulls your unique Features grid launcher cards -->
+</head>
+<body class="cyberpunk-portal-body">
+
+    <!-- Top Fixed Status Ribbon HUD Header Banner -->
+    <header class="portal-top-hud">
+        <div class="nav-branding-title">Productometer</div>
+        <div class="nav-diamond-hud" style="display: none;">💎 <span id="globalDiamondWallet">0</span></div>
+    </header>
+
+    <!-- Main Content Workspace Grid Area -->
+    <main class="portal-main-content">
+        <div class="features-grid-container">
+            
+            <!-- Module Tile 1: Day Planner -->
+            <div class="feature-launcher-card day-planner-theme" data-target="Day_Planner">
+                <!-- 🎯 FIXED MASTER PATH: Uses an absolute path pointer to bypass browser layout link breaks -->
+                <img src="C:/Users/USER/My Projects/Productivity_Meter/Features/assets/1.avif" class="tile-card-bg-layer" alt="">
+                
+                <div class="card-status-header">
+                    <span class="tier-badge free">FREE MODULE</span>
+                    <span class="live-metric-indicator" id="metric-planner">0/48 Slots</span>
+                </div>
+                
+                <div class="card-heading-box">
+                    <h3>Day Planner</h3>
+                </div>
+                
+                <p class="card-comment-desc">Fill timeline matrix intervals using continuous swipe-paint touch blocks grid logs.</p>
+            </div>
+
+            <!-- Module Tile 2: Academics Monitoring -->
+            <div class="feature-launcher-card academics-theme" data-target="Academics_Monitoring">
+                <img src="C:/Users/USER/My Projects/Productivity_Meter/Features/assets/2.jpg" class="tile-card-bg-layer" alt="">
+                
+                <div class="card-status-header">
+                    <span class="tier-badge free">FREE MODULE</span>
+                    <span class="live-metric-indicator" id="metric-academics">Ready</span>
+                </div>
+                
+                <div class="card-heading-box">
+                    <h3>Academics Monitoring</h3>
+                </div>
+                
+                <p class="card-comment-desc">Real-time countdown timer tracking loops equipped with self-report distraction penalties.</p>
+            </div>
+
+            <!-- Module Tile 3: Screen Management -->
+            <div class="feature-launcher-card screen-theme" data-target="Screen_Management">
+                <img src="C:/Users/USER/My Projects/Productivity_Meter/Features/assets/3.avif" class="tile-card-bg-layer" alt="">
+                
+                <div class="card-status-header">
+                    <span class="tier-badge free">FREE MODULE</span>
+                    <span class="live-metric-indicator text-warn" id="metric-screen">0.0h Screen</span>
+                </div>
+                
+                <div class="card-heading-box">
+                    <h3>Screen Management</h3>
+                </div>
+                
+                <p class="card-comment-desc">Monitor device entertainment consumption and safeguard performance caps boundaries.</p>
+            </div>
+
+            <!-- Module Tile 4: Health Tracker -->
+            <div class="feature-launcher-card health-theme" data-target="Health_Tracker">
+                <img src="C:/Users/USER/My Projects/Productivity_Meter/Features/assets/4.avif" class="tile-card-bg-layer" alt="">
+                
+                <div class="card-status-header">
+                    <span class="tier-badge free">FREE MODULE</span>
+                    <span class="live-metric-indicator" id="metric-health">Ready</span>
+                </div>
+                
+                <div class="card-heading-box">
+                    <h3>Health Tracker</h3>
+                </div>
+                
+                <p class="card-comment-desc">Log exercise items, track body stats, and monitor vital parameters.</p>
+            </div>
+
+            <!-- Module Tile 5: Skill Manager -->
+            <div class="feature-launcher-card skills-theme" data-target="Tasks_List">
+                <img src="C:/Users/USER/My Projects/Productivity_Meter/Features/assets/5.jpeg" class="tile-card-bg-layer" alt="">
+                
+                <div class="card-status-header">
+                    <span class="tier-badge free">FREE MODULE</span>
+                    <span class="live-metric-indicator" id="metric-tasks">0 Tasks Open</span>
+                </div>
+                
+                <div class="card-heading-box">
+                    <h3>Skill Manager</h3>
+                </div>
+                
+                <p class="card-comment-desc">Sleek pitch-black checklist rows paired with automated +50 point score reward hooks.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Sticky Bottom Navigation Bar Layout -->
+    <nav class="portal-bottom-nav">
+        <a href="../index.html" class="bottom-nav-btn">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="./index.html" class="bottom-nav-btn active">
+            <i class="fa-solid fa-cubes"></i>
+            <span>Features</span>
+        </a>
+        <a href="../Me/index.html" class="bottom-nav-btn">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span>Me</span>
+        </a>
+    </nav>
+
+    <!-- Connects straight to your scripts.js file visible in your file explorer -->
+    <script src="./scripts.js"></script>
+</body>
+</html>

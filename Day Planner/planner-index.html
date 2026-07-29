@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Module - Day Planner Matrix</title>
+    <!-- Google Fonts Framework Links -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons Framework Asset -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <link rel="stylesheet" href="../../style.css">       <!-- Global root styles -->
+    <link rel="stylesheet" href="./planner-style.css">   <!-- Day Planner unique styles -->
+</head>
+<body class="cyberpunk-portal-body">
+
+    <!-- Top Fixed Status Ribbon HUD Header Banner -->
+    <style>
+        /* Specific Flexbox Alignment for Top Header */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        .portal-top-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .nav-back-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-title {
+            margin: 0;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-nav">
+    <div class="portal-top-hud">
+        <div class="nav-back-control">
+            <a href="../index.html" class="back-link-btn"><i class="fa-solid fa-circle-arrow-left"></i> Features Hub</a>
+        </div>
+        <h1 class="page-title">Day Planner</h1>
+    </div>
+</header>
+<style>
+    
+</style>
+
+    <!-- Main Content Workspace Area Frame -->
+    <main class="portal-main-content">
+
+        <!-- 1. 📊 THE MASTER STATUS BAR (BORDERLESS & NO DIVISIONS) -->
+        <section class="master-timeline-bar-section">
+            <span class="section-micro-label">24h Visual Master Routine Track</span>
+            <div class="master-blueprint-rail">
+                <div class="fluid-neon-fill-container" id="masterNeonFillTrack">
+                    <!-- Dynamic absolute color segments block elements injected here -->
+                </div>
+            </div>
+            <div class="rail-time-labels">
+                <span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span>
+            </div>
+        </section>
+
+        <!-- 2. 📋 CHRONOLOGICAL AUTO-SORTING TASK LIST -->
+        <!-- 🎯 FIXED: Changed heading name to TASKS LIST and removed the +50pts reward notification tag completely -->
+        <section class="chronological-list-section neon-white-glow-backing">
+            <div class="todo-header-row">
+                <div class="todo-title-label">Tasks List</div>
+            </div>
+            <div class="todo-items-bucket" id="plannerTaskBucket">
+                <!-- Sorted cards display rows drop inside here automatically -->
+            </div>
+        </section>
+
+       <!-- Add Tasks Trigger Button -->
+<button class="open-task-dialog-btn" id="openTaskDialogBtn">
+    <i class="fa-solid fa-plus"></i> Add Tasks
+</button>
+
+<!-- Task Builder Dialog / Modal Wrapper -->
+<dialog id="taskBuilderDialog" class="task-builder-dialog">
+    <form method="dialog" class="dialog-close-form">
+        <button type="submit" class="dialog-x-close-btn">&times;</button>
+    </form>
+    
+    <!-- Original Task Builder Box Container -->
+    <section class="task-builder-palette-deck neon-white-glow-backing">
+        <span class="section-micro-label">Configure Target Objective Parameters</span>
+        
+        <!-- Category Select Tabs Row -->
+        <div class="menu-tabs-row">
+            <button class="type-tab-btn active" data-type="academics">Academics</button>
+            <button class="type-tab-btn" data-type="skills">Skills</button>
+            <button class="type-tab-btn" data-type="health">Health</button>
+            <button class="type-tab-btn" data-type="other">Other</button>
+        </div>
+
+        <!-- Optional Short Description Bar Input Box Field -->
+        <div class="drawer-description-bar">
+            <input type="text" id="taskDescriptionInput" placeholder="Add optional task description note here first...">
+        </div>
+
+        <!-- Preset Action Selection Decks -->
+        <div class="sub-buttons-row academics" id="options-academics">
+            <button data-task="Lecture">Lecture</button>
+            <button data-task="Revision">Revision</button>
+            <button data-task="Question Practice">Question Practice</button>
+            <button class="custom-task-btn" data-task="custom"><i class="fa-solid fa-plus"></i> Custom Task</button>
+        </div>
+
+        <div class="sub-buttons-row skills" id="options-skills" style="display: none;">
+            <button data-task="Technical">Technical</button>
+            <button data-task="Physical">Physical</button>
+            <button data-task="Something New">Something New</button>
+            <button class="custom-task-btn" data-task="custom"><i class="fa-solid fa-plus"></i> Custom Task</button>
+        </div>
+
+        <div class="sub-buttons-row health" id="options-health" style="display: none;">
+            <button data-task="Running">Running</button>
+            <button data-task="Exercise">Exercise</button>
+            <button class="custom-task-btn" data-task="custom"><i class="fa-solid fa-plus"></i> Custom Task</button>
+        </div>
+
+        <div class="sub-buttons-row other" id="options-other" style="display: none;">
+            <button data-task="Routine Work">Routine Work</button>
+            <button data-task="Relaxation">Rest / Relax</button>
+            <button class="custom-task-btn" data-task="custom"><i class="fa-solid fa-plus"></i> Custom Task</button>
+        </div>
+
+        <!-- DUAL 3D TOUCH-DRUM CLOCK SCROLL WHEELS GRID -->
+        <div class="builder-time-grid-upgraded">
+            
+            <!-- WHEEL BLOCK 1: START TIME SELECTOR -->
+            <div class="builder-row">
+                <label class="upgraded-time-title-label">Starting Time</label>
+                <div class="skeuo-3d-drum-container academics-glow-aura">
+                    <div class="scroll-wheel-column-drum" id="wheelStartHours">
+                        <div class="wheel-scroll-track-drum"></div>
+                    </div>
+                    <div class="wheel-separator-dots">:</div>
+                    <div class="scroll-wheel-column-drum" id="wheelStartMinutes">
+                        <div class="wheel-scroll-track-drum"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WHEEL BLOCK 2: DURATION SELECTOR -->
+            <div class="builder-row">
+                <label class="upgraded-time-title-label">Duration</label>
+                <div class="skeuo-3d-drum-container skills-glow-aura">
+                    <div class="scroll-wheel-column-drum" id="wheelDurationHours">
+                        <div class="wheel-scroll-track-drum"></div>
+                    </div>
+                    <div class="wheel-separator-dots">h</div>
+                    <div class="scroll-wheel-column-drum" id="wheelDurationMinutes">
+                        <div class="wheel-scroll-track-drum"></div>
+                    </div>
+                    <div class="wheel-separator-dots" style="margin-left: -5px;">m</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Error Notice Banner (Hidden by default) -->
+    <div id="taskErrorNotice" class="custom-error-notice hidden" style="display: none;">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span id="taskErrorMessage">Collision Error text goes here...</span>
+    </div>
+        <!-- Add to Planner Layout Button Trigger -->
+        <button class="add-to-planner-btn" id="addToPlannerBtn">
+            <i class="fa-solid fa-square-plus"></i> Add To Planner Track
+        </button>
+
+    </section>
+</dialog>
+
+<!-- Graphical Custom Modal Pop-up (Upgraded to native <dialog> for correct layered stacking order) -->
+<dialog id="customTaskModal" class="task-builder-dialog custom-task-sub-dialog">
+    <div class="task-builder-palette-deck neon-white-glow-backing" style="border-color: #d500f9 !important; box-shadow: 0 0 35px rgba(213,0,249,0.25) !important;">
+        <span class="section-micro-label" style="color: #d500f9 !important;">Design Custom Task Preset</span>
+        
+        <div class="modal-input-group" style="margin-top: 5px;">
+            <label for="customTaskTitleInput">Enter Task Name:</label>
+            <input type="text" id="customTaskTitleInput" placeholder="e.g. Solve 15 questions, Read chapter 2...">
+        </div>
+
+        <!-- Checkbox to save permanently -->
+        <div class="modal-checkbox-group" style="display: flex; align-items: center; gap: 10px; margin-top: 6px;">
+            <input type="checkbox" id="savePermanentCheckbox" style="width: 18px; height: 18px; accent-color: #d500f9; cursor: pointer;">
+            <label for="savePermanentCheckbox" style="font-size: 0.78rem; font-weight: 700; color: #a0a0ab; text-transform: none; cursor: pointer;">Save to permanent category presets</label>
+        </div>
+
+        <div class="modal-actions-row" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 12px;">
+            <button type="button" class="modal-btn cancel-btn" id="taskCancelBtn">Ignore</button>
+            <button type="button" class="modal-btn confirm-btn" id="taskConfirmBtn" style="border-color: #d500f9; color: #d500f9;">Create Card</button>
+        </div>
+    </div>
+</dialog>
+
+<!-- ======================================================== -->
+<!-- MODAL WORKSPACE OVERLAY: DYNAMIC ACTIVITY EDITS          -->
+<!-- ======================================================== -->
+<div id="reschedule-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 99999; backdrop-filter: blur(4px);">
+    <div style="background: #111116; color: #fff; padding: 24px; border-radius: 16px; width: 90%; max-width: 380px; border: 1px solid #222230; box-shadow: 0 20px 40px rgba(0,0,0,0.7); font-family: system-ui, -apple-system, sans-serif;">
+        <h3 style="margin-top: 0; color: #00e676; font-size: 18px; margin-bottom: 20px; font-weight: 600; letter-spacing: 0.5px;">📝 Edit Task Details</h3>
+        
+        <div style="margin-bottom: 14px;">
+            <label style="display: block; font-size: 11px; text-transform: uppercase; color: #6e6e82; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px;">Task Title / Topic</label>
+            <input type="text" id="edit-title-input" style="width: 100%; box-sizing: border-box; background: #181824; border: 1px solid #2d2d3f; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s;">
+        </div>
+
+        <div style="margin-bottom: 14px; display: flex; gap: 12px;">
+            <div style="flex: 1;">
+                <label style="display: block; font-size: 11px; text-transform: uppercase; color: #6e6e82; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px;">Starting Time</label>
+                <input type="time" id="edit-start-time" style="width: 100%; box-sizing: border-box; background: #181824; border: 1px solid #2d2d3f; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+            <div style="flex: 1;">
+                <label style="display: block; font-size: 11px; text-transform: uppercase; color: #6e6e82; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px;">Ending Time</label>
+                <input type="time" id="edit-end-time" style="width: 100%; box-sizing: border-box; background: #181824; border: 1px solid #2d2d3f; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; outline: none;">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <label style="display: block; font-size: 11px; text-transform: uppercase; color: #6e6e82; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px;">Description / Context</label>
+            <textarea id="edit-desc-input" style="width: 100%; box-sizing: border-box; height: 80px; resize: none; background: #181824; border: 1px solid #2d2d3f; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; outline: none; line-height: 1.4;"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+            <button onclick="closeRescheduleModal()" style="background: #1e1e2a; border: 1px solid #2d2d3f; padding: 10px 18px; border-radius: 8px; color: #a0a0b5; cursor: pointer; font-weight: 600; font-size: 13px; transition: background 0.2s;">Cancel</button>
+            <button onclick="saveActivityEdits()" style="background: #00e676; border: none; padding: 10px 18px; border-radius: 8px; color: #000; font-weight: 700; cursor: pointer; font-size: 13px; transition: opacity 0.2s;">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Action Buttons Row -->
+
+
+    <!-- NEW: Edit Task Button (Disabled/Hidden by default until a task is selected) -->
+    <button class="open-task-dialog-btn edit-task-btn" id="openEditTaskDialogBtn" style="border-color: rgba(255, 179, 0, 0.4); color: #ffb300; opacity: 0.5; pointer-events: none;" disabled>
+        <i class="fa-solid fa-pen-to-square"></i> Edit Task
+    </button>
+</div>
+
+    <script src="./planner-scripts.js"></script>
+</body>
+</html>

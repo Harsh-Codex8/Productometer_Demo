@@ -1,0 +1,212 @@
+/* ==========================================================================
+   🎮 PRODUCTOMETER MODULE - DAY PLANNER CHRONO WORKSPACE STYLES
+   ========================================================================== */
+
+body, html {
+    margin: 0; padding: 0;
+    background-color: #000000 !important;
+    color: #ffffff; font-family: 'Inter', sans-serif;
+    min-height: 100vh; box-sizing: border-box; overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cyberpunk-portal-body { display: flex; flex-direction: column; padding-top: 85px; padding-bottom: 40px; }
+
+/* --- 👑 TOP FIXED HUD STATUS RIBBON --- */
+.portal-top-hud {
+    position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+    background: rgba(12, 12, 18, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.04);
+    display: flex; justify-content: space-between; align-items: center; padding: 0 20px; box-sizing: border-box; z-index: 9999;
+}
+.back-link-btn { text-decoration: none; color: #8a8a9e; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; transition: color 0.25s ease; }
+.back-link-btn:hover { color: #00e5ff; }
+.nav-branding-title { font-family: 'Caveat', cursive; font-style: italic; font-size: 1.8rem; font-weight: 700; color: #ffffff; }
+
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 30%, #00e5ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+/* --- 📦 MAIN MODULE FRAME WORKSPACE CONTENT --- */
+.portal-main-content { width: 94%; max-width: 500px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px; }
+.section-micro-label { font-size: 0.72rem; font-weight: 800; color: #555566; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; display: block; }
+.hidden { display: none !important; }
+
+/* --- 📊 1. THE MASTER STATUS BAR (BORDERLESS & DIVISIONLESS) --- */
+.master-blueprint-rail {
+    width: 100%; height: 42px; background-color: #0b0b0f; 
+    border: 1.5px solid rgba(255, 255, 255, 0.05); border-radius: 16px;
+    box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.9); position: relative; overflow: hidden;
+}
+.fluid-neon-fill-container { position: relative; width: 100%; height: 100%; }
+.chrono-color-segment {
+    position: absolute; height: 100%; top: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 2px;
+}
+.rail-time-labels { display: flex; justify-content: space-between; padding: 6px 4px 0 4px; font-size: 0.7rem; font-weight: 700; color: #4e4e5e; letter-spacing: 0.5px; }
+
+/* --- 📋 2. CHRONOLOGICAL AUTO-SORTING LIST AREA --- */
+.chronological-list-section {
+    background: linear-gradient(180deg, #101015 0%, #050508 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.04); border-radius: 26px;
+    padding: 22px; display: flex; flex-direction: column; gap: 18px;
+}
+.todo-header-row { display: flex; justify-content: space-between; align-items: center; width: 100%; padding-bottom: 4px; border-bottom: 1.5px solid rgba(255,255,255,0.02); }
+.todo-title-label { font-size: 0.95rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.8px; }
+.todo-items-bucket { display: flex; flex-direction: column; gap: 14px; width: 100%; min-height: 50px; max-height: 300px; overflow-y: auto; scrollbar-width: none; }
+.todo-items-bucket::-webkit-scrollbar { display: none; }
+.todo-empty-placeholder { font-size: 0.85rem; color: #4e4e5e; font-style: italic; text-align: center; margin: 15px 0; font-weight: 500; }
+
+.chrono-task-card {
+    position: relative; width: 100%; background: #000000; border-radius: 18px; padding: 16px 18px; box-sizing: border-box;
+    display: flex; justify-content: space-between; align-items: center; gap: 15px;
+    border: 1.5px solid transparent !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+.chrono-task-card.selected-for-editing {
+    border-color: #00e5ff !important;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+}
+.card-time-badge { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.06); padding: 5px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; color: #a0a0ab; text-align: center; min-width: 65px; }
+.card-info-stack { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.card-main-title { font-size: 1.05rem; font-weight: 800; color: #ffffff; letter-spacing: -0.3px; }
+.card-sub-description { font-size: 0.78rem; color: #646475; font-weight: 500; line-height: 1.4; }
+.delete-chrono-item-btn { background: transparent; border: none; color: #4e4e5e; font-size: 1.4rem; cursor: pointer; transition: color 0.2s ease; padding: 0 5px; }
+.delete-chrono-item-btn:hover { color: #ff1744; }
+
+/* Action Row for Add & Edit Buttons */
+.task-action-buttons-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+/* --- 🏗️ 3. REFRESHED SLIDER-FREE DRAWER MENUS DECK --- */
+.task-builder-palette-deck {
+    background: linear-gradient(180deg, #101015 0%, #050508 100%); border: 1.5px solid rgba(255,255,255,0.04);
+    border-radius: 26px; padding: 22px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px;
+}
+.menu-tabs-row { display: flex; background: #000000; border: 1.5px solid #22222b; padding: 4px; border-radius: 16px; gap: 4px; }
+.type-tab-btn { flex: 1; background: transparent; border: none; color: #646475; padding: 10px 0; font-size: 0.78rem; font-weight: 700; border-radius: 12px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease; }
+.type-tab-btn.active { background: #141419; color: #ffffff; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+
+.drawer-description-bar input {
+    width: 100%; background: #000000; border: 1.5px solid #22222b; border-radius: 14px; padding: 13px 16px;
+    color: #ffffff; font-family: 'Inter', sans-serif; font-size: 0.88rem; box-sizing: border-box; transition: border-color 0.25s ease;
+}
+.drawer-description-bar input:focus { outline: none; border-color: #00e5ff; }
+
+.sub-buttons-row { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; margin-top: 5px; }
+.sub-buttons-row button {
+    background: #000000; border: 1.5px solid #22222b; color: #a0a0ab; padding: 10px 16px;
+    font-size: 0.78rem; font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.2s ease;
+}
+.sub-buttons-row button:hover { border-color: rgba(255,255,255,0.15); color: #ffffff; background: #07070a; }
+.sub-buttons-row button.active-preset-highlight { border-color: #00e5ff !important; color: #00e5ff !important; background: rgba(0,229,255,0.04); box-shadow: 0 0 10px rgba(0,229,255,0.15); }
+.sub-buttons-row button.custom-task-btn { border-color: rgba(213,0,249,0.3); color: #d500f9; background: rgba(213,0,249,0.02); }
+.sub-buttons-row button.custom-task-btn:hover { border-color: #d500f9; background: rgba(213,0,249,0.08); color: #ffffff; }
+
+/* Alarm Toggle Styling */
+.alarm-option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #000000;
+    border: 1.5px solid #22222b;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.alarm-option-row input[type="checkbox"] {
+    accent-color: #00e5ff;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* --- 🌟 UPGRADED: ULTRA HIGH-INTENSITY NEON WHITE BLURRY BACKGROUND GLOW AURA --- */
+.neon-white-glow-backing {
+    position: relative;
+    background: linear-gradient(180deg, #12121a 0%, #060609 100%) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.16), 
+                0 0 15px rgba(255, 255, 255, 0.08), 
+                0 0 4px rgba(255, 255, 255, 0.05),
+                inset 0 1px 2px rgba(255, 255, 255, 0.05) !important;
+}
+
+/* --- ⏱️ 5. UPGRADED LABELS & 3D TOTAL-BLACK DRUM CYLINDER WHEELS --- */
+.builder-time-grid-upgraded { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: flex-end; width: 100%; }
+.builder-row { display: flex; flex-direction: column; gap: 8px; width: 100%; box-sizing: border-box; }
+
+.upgraded-time-title-label {
+    font-size: 0.88rem !important; 
+    font-weight: 700 !important; 
+    color: #ffffff !important; 
+    text-transform: none !important; 
+    letter-spacing: normal !important;
+}
+
+.skeuo-3d-drum-container {
+    display: flex; align-items: center; justify-content: center; background: #08080c;
+    border-radius: 18px; height: 115px; box-sizing: border-box; overflow: hidden;
+    position: relative; border: 2px solid rgba(255, 255, 255, 0.03) !important;
+}
+
+.academics-glow-aura { box-shadow: 0 0 25px rgba(0, 229, 255, 0.15), inset 0 0 12px rgba(0, 229, 255, 0.1); border-color: rgba(0, 229, 255, 0.25) !important; }
+.skills-glow-aura { box-shadow: 0 0 25px rgba(255, 179, 0, 0.15), inset 0 0 12px rgba(255, 179, 0, 0.1); border-color: rgba(255, 179, 0, 0.25) !important; }
+.health-glow-aura { box-shadow: 0 0 25px rgba(0, 230, 118, 0.15), inset 0 0 12px rgba(0, 230, 118, 0.1); border-color: rgba(0, 230, 118, 0.25) !important; }
+
+.scroll-wheel-column-drum { 
+    flex: 1; height: 100%; position: relative; overflow-y: scroll; 
+    scroll-snap-type: y mandatory; scrollbar-width: none;
+    background: linear-gradient(180deg, #000000 0%, transparent 35%, transparent 65%, #000000 100%);
+}
+.scroll-wheel-column-drum::-webkit-scrollbar { display: none; }
+.wheel-scroll-track-drum { padding: 38px 0; } 
+
+.wheel-tick-node { 
+    height: 38px; line-height: 38px; text-align: center; 
+    font-size: 1.3rem; font-weight: 700; color: #3e414f; 
+    scroll-snap-align: center; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wheel-tick-node.selected-time { 
+    color: #ffffff !important; font-weight: 800; font-size: 1.7rem;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+}
+
+.skeuo-3d-drum-container::before, .skeuo-3d-drum-container::after {
+    content: ''; position: absolute; left: 4%; width: 92%; height: 1.5px;
+    background: linear-gradient(90deg, transparent, #00e5ff, #ffffff, #00e5ff, transparent);
+    filter: drop-shadow(0 0 4px #00e5ff); pointer-events: none;
+}
+.skeuo-3d-drum-container::before { top: 38px; }
+.skeuo-3d-drum-container::after { top: 76px; }
+
+.wheel-separator-dots { font-size: 1.4rem; font-weight: 900; color: #4e5061; padding: 0 2px; text-transform: lowercase; }
+
+.add-to-planner-btn {
+    width: 100%; background: #000000; border: 1.5px solid rgba(255,255,255,0.05); color: #00e5ff;
+    padding: 14px 0; font-size: 0.82rem; font-weight: 800; border-radius: 15px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.8px; display: flex; align-items: center; justify-content: center; gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.add-to-planner-btn:hover { background: rgba(0, 229, 255, 0.04); border-color: #00e5ff; box-shadow: 0 0 15px rgba(0, 229, 255, 0.2); }
+
+/* --- 🎭 100% PRESERVED ORIGINAL MODAL INTERFACE --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(4, 4, 6, 0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: flex; justify-content: center; align-items: center; z-index: 99999; opacity: 1; transition: all 0.3s ease; }
+.modal-overlay.hidden { display: none !important; opacity: 0; }
+.modal-card { background: linear-gradient(180deg, #101015 0%, #060609 100%); border: 2px solid #00e5ff; box-shadow: 0 0 35px rgba(0, 229, 255, 0.2); border-radius: 28px; padding: 30px; width: 92%; max-width: 420px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; }
+.modal-card h4 { margin: 0; font-size: 1.25rem; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }

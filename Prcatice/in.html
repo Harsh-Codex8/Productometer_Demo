@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Planner Chrono Workspace</title>
+    
+    <!-- Google Fonts Framework Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons Framework Asset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Link External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="cyberpunk-portal-body">
+
+    <!-- TOP FIXED HUD STATUS RIBBON -->
+    <header class="portal-top-hud">
+        <div class="nav-back-control">
+            <a href="../index.html" class="back-link-btn"><i class="fa-solid fa-circle-arrow-left"></i> Features Hub</a>
+        </div>
+        <div class="nav-branding-title">Productometer</div>
+    </header>
+
+    <!-- MAIN MODULE FRAME WORKSPACE CONTENT -->
+    <main class="portal-main-content">
+
+        <!-- 1. THE MASTER STATUS BAR -->
+        <section class="master-timeline-bar-section">
+            <span class="section-micro-label">24h Visual Master Routine Track</span>
+            <div class="master-blueprint-rail">
+                <div class="fluid-neon-fill-container" id="masterNeonFillTrack"></div>
+            </div>
+            <div class="rail-time-labels">
+                <span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>12 AM</span>
+            </div>
+        </section>
+
+        <!-- 2. CHRONOLOGICAL AUTO-SORTING LIST AREA -->
+        <section class="chronological-list-section neon-white-glow-backing">
+            <div class="todo-header-row">
+                <div class="todo-title-label">Tasks List</div>
+            </div>
+            <div class="todo-items-bucket" id="plannerTaskBucket"></div>
+            
+            <!-- ADD & EDIT ACTION BUTTONS ROW -->
+            <div class="task-action-buttons-row">
+                <button id="openAddTaskModalBtn" class="add-to-planner-btn">
+                    <i class="fa-solid fa-plus"></i> Add Task
+                </button>
+                <button id="openEditTaskModalBtn" class="add-to-planner-btn" style="border-color: rgba(213,0,249,0.3); color: #d500f9;">
+                    <i class="fa-solid fa-pen"></i> Edit
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 🏗️ UNIFIED TASK BUILDER & EDIT DIALOG MODAL -->
+    <div id="taskBuilderModalOverlay" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 id="taskModalTitle" style="color: #00e5ff;">✨ Add New Task</h4>
+                <button onclick="closeTaskBuilderModal()" style="background: transparent; border: none; color: #8a8a9e; font-size: 1.2rem; cursor: pointer;">&times;</button>
+            </div>
+
+            <!-- Exact original task builder palette deck UI restored -->
+            <div class="task-builder-palette-deck">
+                <div class="menu-tabs-row" id="taskTypeTabs">
+                    <button class="type-tab-btn active" data-type="academics">Academics</button>
+                    <button class="type-tab-btn" data-type="skills">Skills</button>
+                    <button class="type-tab-btn" data-type="health">Health</button>
+                </div>
+
+                <div class="drawer-description-bar">
+                    <input type="text" id="taskInputDescription" placeholder="Enter task topic or description...">
+                </div>
+
+                <div class="sub-buttons-row" id="taskPresetButtonsRow"></div>
+
+                <div class="builder-time-grid-upgraded">
+                    <div class="builder-row">
+                        <span class="upgraded-time-title-label">Starting Time</span>
+                        <div class="skeuo-3d-drum-container academics-glow-aura" id="startTimeDrumContainer">
+                            <div class="scroll-wheel-column-drum" id="startHourWheel">
+                                <div class="wheel-scroll-track-drum" id="startHourTrack"></div>
+                            </div>
+                            <span class="wheel-separator-dots">:</span>
+                            <div class="scroll-wheel-column-drum" id="startMinWheel">
+                                <div class="wheel-scroll-track-drum" id="startMinTrack"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="builder-row">
+                        <span class="upgraded-time-title-label">Duration</span>
+                        <div class="skeuo-3d-drum-container academics-glow-aura" id="durationDrumContainer">
+                            <div class="scroll-wheel-column-drum" id="durHoursWheel">
+                                <div class="wheel-scroll-track-drum" id="durHoursTrack"></div>
+                            </div>
+                            <span class="wheel-separator-dots">h</span>
+                            <div class="scroll-wheel-column-drum" id="durMinsWheel">
+                                <div class="wheel-scroll-track-drum" id="durMinsTrack"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alarm Option Row -->
+                <label class="alarm-option-row">
+                    <input type="checkbox" id="taskAlarmCheckbox"> Set Alarm (Triggers audio 5m before)
+                </label>
+
+                <button class="add-to-planner-btn" id="commitTaskToPlannerBtn">
+                    <i class="fa-solid fa-plus-circle"></i> Commit Task to Planner
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Audio Asset for Alarms -->
+    <audio id="taskAlarmAudio" src="audio.mp3" preload="auto"></audio>
+
+    <!-- Link External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

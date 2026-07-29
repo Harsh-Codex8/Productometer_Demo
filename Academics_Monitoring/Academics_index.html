@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academics Monitoring Portal</title>
+    <link rel="stylesheet" href="Academics_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Specific Flexbox Alignment for Top Header */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+        .portal-top-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .nav-back-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-title {
+            margin: 0;
+            text-align: right;
+        }
+
+        /* Internal CSS for the Add Task Link Button */
+        .add-task-btn {
+            background: transparent;
+            color: var(--accent-cyan, #00e5ff);
+            border: 1px solid var(--accent-cyan, #00e5ff);
+            padding: 6px 14px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .add-task-btn:hover {
+            background: rgba(0, 229, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+        <div class="portal-top-hud">
+            <div class="nav-back-control">
+                <a href="../index.html" id="featuresHubLink" class="back-link-btn"><i class="fa-solid fa-circle-arrow-left"></i> Features Hub</a>
+            </div>
+            <h1 class="page-title">Academics Monitoring</h1>
+        </div>
+    </header>
+        
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="dashboard-container">
+
+        <!-- SECTION 1: TODAY'S ACADEMIC TASKS -->
+        <div id="activeSessionBoxContainer"></div>
+        <section class="glow-card">
+            <h2 class="soft-heading">Today's Academic Tasks</h2>
+            <div id="todaysTasksContainer" class="tasks-stack">
+                <!-- Active Academic Timetable Slots -->
+                <div class="hub-card timetable-card">
+                    <div class="card-header-row">
+                        
+                        <!-- Links directly to the Day Planner page -->
+                    <a href="../Day Planner/planner-index.html" class="add-task-btn">+ ADD TASK</a>
+                    </div>
+                    <div id="academicTasksBucket" class="tasks-bucket">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ONLINE RESOURCES PORTAL -->
+        <section class="glow-card">
+            <h2 class="soft-heading">Approved Online Resources</h2>
+            
+            <div class="resources-vertical-list">
+                <div class="resource-card-item" onclick="openApprovedResource('https://www.youtube.com')">
+                    <div class="resource-card-header">
+                        <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" class="resource-favicon" alt="icon">
+                        <span class="resource-card-title">YouTube</span>
+                        <button class="remove-resource-btn" title="Remove Resource" onclick="event.stopPropagation(); this.closest('.resource-card-item').remove();">&times;</button>
+                    </div>
+                </div>
+                
+                <div class="resource-card-item" onclick="openApprovedResource('https://chatgpt.com')">
+                    <div class="resource-card-header">
+                        <img src="https://www.google.com/s2/favicons?domain=chatgpt.com&sz=32" class="resource-favicon" alt="icon">
+                        <span class="resource-card-title">ChatGPT</span>
+                        <button class="remove-resource-btn" title="Remove Resource" onclick="event.stopPropagation(); this.closest('.resource-card-item').remove();">&times;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="custom-site-trigger-row">
+                <button type="button" class="btn-cyan-outline" onclick="document.getElementById('customSiteDialog').showModal()">+ Add Custom Site</button>
+            </div>
+
+            <dialog id="customSiteDialog" class="custom-site-dialog">
+                <div class="dialog-form">
+                    <h3>Add Custom Resource</h3>
+                    
+                    <div class="dialog-input-group">
+                        <label for="siteName">Site Name</label>
+                        <input type="text" id="siteName" placeholder="e.g. Physics Galaxy">
+                    </div>
+
+                    <div class="dialog-input-group">
+                        <label for="siteUrl">Site URL</label>
+                        <input type="text" id="siteUrl" placeholder="https://example.com">
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="document.getElementById('customSiteDialog').close()">Cancel</button>
+                        <button type="button" id="forceAddBtn" class="btn-cyan-solid">Add</button>
+                    </div>
+                </div>
+            </dialog>
+        </section>
+
+        <!-- SECTION 3: WEEKLY TASKS OVERVIEW -->
+        <section class="glow-card">
+            <h2 class="soft-heading">Weekly Tasks Overview</h2>
+            <div id="weeklyTasksContainer" class="tasks-stack">
+                <!-- Populated dynamically -->
+            </div>
+            <div class="custom-site-trigger-row">
+                <button type="button" class="btn-cyan-outline" onclick="document.getElementById('weeklyTaskDialog').showModal()">+ Add Weekly Task</button>
+            </div>
+
+            <dialog id="weeklyTaskDialog" class="custom-site-dialog">
+                <div class="dialog-form">
+                    <h3>Add Weekly Task</h3>
+                    
+                    <div class="dialog-input-group">
+                        <label for="weeklyTaskTitle">Task Title</label>
+                        <input type="text" id="weeklyTaskTitle" placeholder="e.g. Physics Chapter 4 Problem Set">
+                    </div>
+
+                    <div class="dialog-input-group">
+                        <label for="weeklyTaskTargetDay">Target Day / Deadline</label>
+                        <input type="text" id="weeklyTaskTargetDay" placeholder="e.g. Due Friday">
+                    </div>
+
+                    <div class="dialog-actions">
+                        <button type="button" class="btn-cancel" onclick="document.getElementById('weeklyTaskDialog').close()">Cancel</button>
+                        <button type="button" id="saveWeeklyTaskBtn" class="btn-cyan-solid">Add Task</button>
+                    </div>
+                </div>
+            </dialog>
+        </section>
+
+        <!-- SECTION 4: TOTAL STUDY TIME BOX -->
+        <section class="glow-card study-time-card">
+            <h2 class="soft-heading">Today's Total Study Time</h2>
+            <div class="study-timer-display" id="studyTimerDisplay">0 minutes</div>
+        </section>
+
+        <!-- CUSTOM MODAL DIALOG OVERLAY -->
+        <div id="customModalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 15, 30, 0.85); backdrop-filter: blur(5px); z-index: 9999; justify-content: center; align-items: center;">
+            <div id="customModalBox" style="background: #131b2e; border: 1px solid #00e676; padding: 30px; border-radius: 16px; width: 90%; max-width: 450px; box-shadow: 0 0 35px rgba(0, 230, 118, 0.25); text-align: center; font-family: inherit;">
+                <div id="customModalIcon" style="font-size: 2.5em; margin-bottom: 15px;">🎯</div>
+                <div id="customModalTitle" style="font-size: 1.3em; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 0.5px;">Alert Title</div>
+                <div id="customModalMessage" style="font-size: 0.95em; color: #94a3b8; margin-bottom: 25px; line-height: 1.5;">Alert message goes here.</div>
+                <div id="customModalButtons" style="display: flex; gap: 12px; justify-content: center;">
+                    <button id="customModalConfirmBtn" style="background-color: #00e676; color: #000; border: none; padding: 10px 24px; font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.2s;">OK</button>
+                    <button id="customModalCancelBtn" style="background-color: transparent; color: #94a3b8; border: 1px solid #334155; padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; display: none;">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ALARM AUDIO ELEMENTS -->
+    <audio id="startAlarm" src="../assets/1.mp3" preload="auto"></audio>
+    <audio id="distractionAlarm" src="../assets/2.mp3" preload="auto" loop></audio>
+    <audio id="breakAlarm" src="../assets/3.mp3" preload="auto"></audio>
+
+    <!-- EXTERNAL SCRIPT LINK -->
+    <script src="Academics_scripts.js"></script>
+    <script src="../global-monitor.js"></script>
+
+</body>
+</html>

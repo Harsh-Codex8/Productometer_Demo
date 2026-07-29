@@ -1,0 +1,15 @@
+{
+  "name": "Productometer Academics",
+  "short_name": "Productometer",
+  "start_url": "./Features/Academics_Monitoring/index.html",
+  "display": "standalone",
+  "background_color": "#05050a",
+  "theme_color": "#00e5ff",
+  "icons": [
+    {
+      "src": "../../assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
